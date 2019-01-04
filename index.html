@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>textarea</title>
+    <link rel="stylesheet" type="text/css" href="codemirror.css" />
+    <style>
+      body {
+        font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+        margin-bottom: 60px;
+      }
+
+      .CodeMirror {
+        font-family: Consolas, "Andale Mono", Monaco, monospace;
+        min-height: 440px;
+      }
+    </style>
+    <script src="../tests/jquery.min.js"></script>
+    <script src="codemirror-compressed.js"></script>
+  </head>
+  <body>
+	<textarea id="code-mirror"></textarea>
+    
+    <script type="text/javascript">
+      var d = {
+        "teams": [
+          {
+            "name": "Oakland Athletics",
+            "id": 1,
+            "wins": 57,
+            "blurb": "The 2011 Oakland As offense was, in a word, inept. ",
+            "players": [
+              "Yoenis Cespedes",
+              "Seth Smith",
+              "Josh Reddick",
+              "Coco Crisp"
+            ]
+          },
+          {
+            "name": "San Francisco Giants",
+            "id": 2,
+            "wins": 48
+          }
+        ],
+        "name": "Major League Baseball",
+        "meta": {
+          "season": 2013,
+          "sport": "baseball"
+        }
+      };
+      var prettyPrint = function(data) {
+        return JSON.stringify(data, null, '\t');
+      };
+      $('#code-mirror').val(prettyPrint(d));
+      var codeMirror = CodeMirror.fromTextArea(
+        document.getElementById('code-mirror'),
+        {
+          lineNumbers: true,
+          //readOnly: "nocursor",
+		  readOnly : false,  // 是否只读，默认false
+          mode: {
+            name: "javascript",
+            json: true
+          }
+        }
+      );
+    </script>
+  </body>
+</html>
+
